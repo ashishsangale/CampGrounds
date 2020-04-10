@@ -1,7 +1,7 @@
 var express = require("express"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose")
-
+    Campground = require("./models/campgrounds")
 
 mongoose.connect("mongodb://localhost/campground");    
 
@@ -10,15 +10,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.set("view engine","ejs");
 
-
-//setting up schema
-var CampgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-
-var Campground = mongoose.model("Campground", CampgroundSchema);
 
 //Campground.create({
 //    name: "Bhandardara lake",
