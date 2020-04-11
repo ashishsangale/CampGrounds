@@ -1,29 +1,17 @@
 var express = require("express"),
     bodyParser = require("body-parser"),
-    mongoose = require("mongoose")
-    Campground = require("./models/campgrounds")
+    mongoose = require("mongoose"),
+    Campground = require("./models/campground"),
+    seedDB = require("./seeds")
 
+   
 mongoose.connect("mongodb://localhost/campground");    
 
 var app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.set("view engine","ejs");
-
-
-//Campground.create({
-//    name: "Bhandardara lake",
-//    image: "https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-//    description: "test1111"
-//
-//}, function(err, campground){//
-//    if(err){
-//        console.log(err)
-//    } else {
-//        console.log(campground)
-//    }
-//
-//});
+seedDB(); 
 
 
 app.get("/", function(req,res){
@@ -68,7 +56,7 @@ app.get("/campgrounds/new", function(req,res){
 
 app.get("/campgrounds/:id", function(req, res){
     //finding campgrounds by id
-    Campground.findById(req.params.id, function(err, foundCampground){
+    Campground.findById(req.params.id).populate("comments").exec( function(err, foundCampground){
         if(err){
             console.log(err)
         } else {
