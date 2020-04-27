@@ -1,5 +1,5 @@
 //======================================================================================
-//          AUTHENTICATION ROUTES
+//          AUTHENTICATION  ROUTES
 //======================================================================================
 var express = require("express");
 var router = express.Router();
@@ -43,7 +43,8 @@ router.post("/login", passport.authenticate("local",
 //logout
 router.get("/logout", function(req, res){
     req.logout();
-    res.redirect("/")
+    req.flash("success", "Logged you out")
+    res.redirect("/campgrounds")
 });
 
 function isLoggedIn(req, res, next){
