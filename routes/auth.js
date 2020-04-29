@@ -7,7 +7,7 @@ var passport = require("passport");
 var User = require("../models/user");
 //Auth Route
 router.get("/register", function(req,res){
-    res.render('register')
+    res.render('register', {page: 'register'});
 });
  
 //login logic
@@ -29,7 +29,7 @@ router.post("/register", function(req, res){
 
 //login
 router.get("/login", function(req,res){
-    res.render('login')
+    res.render('login', {page: 'login'});
 });
 
 router.post("/login", passport.authenticate("local",

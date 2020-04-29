@@ -14,12 +14,9 @@ router.get("/", function(req,res){
         if(err){
             console.log(err)
         } else {
-            res.render("campgrounds/index", {campgrounds:allCampgrounds, currentUser: req.user});
+            res.render("campgrounds/index", {campgrounds:allCampgrounds, currentUser: req.user, page: 'campgrounds'});
         }
     });
-
-    //res.render("campgrounds", {campgrounds:campgrounds});
-
 });
 
 router.post("/",middleware.isLoggedIn, function(req,res){
