@@ -16,7 +16,8 @@ var campgroundRoutes = require("./routes/campgrounds"),
     authRoutes = require("./routes/auth");
 
 //Mongoose COnnection   
-mongoose.connect("mongodb://localhost/campground");
+//mongoose.connect("mongodb://localhost/campground");
+mongoose.connect("mongodb+srv://ashish:vortex_8106@cluster0-11r60.mongodb.net/test?retryWrites=true&w=majority");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
