@@ -17,8 +17,10 @@ var campgroundRoutes = require("./routes/campgrounds"),
 
 //Mongoose COnnection   
 //mongoose.connect("mongodb://localhost/campground", {useNewUrlParser: true, useUnifiedTopology: true});
-var uri = "mongodb://ashish:iamasimpleuser@test-shard-00-00-x7hao.gcp.mongodb.net:27017,test-shard-00-01-x7hao.gcp.mongodb.net:27017,test-shard-00-02-x7hao.gcp.mongodb.net:27017/test?ssl=true&replicaSet=test-shard-0&authSource=admin&retryWrites=true&w=majority"
-mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}, function(){
+
+mongoose.connect(process.env.DATABASEURL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true},function(){
     console.log("connnected")
 });
 
@@ -59,6 +61,6 @@ app.get("/", function(req,res){
     res.render("landing");
 });
  
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(process.env.PORT || port, process.env.IP, function(){
     console.log("Server Started");
 });
