@@ -16,8 +16,12 @@ var campgroundRoutes = require("./routes/campgrounds"),
     authRoutes = require("./routes/auth");
 
 //Mongoose COnnection   
-//mongoose.connect("mongodb://localhost/campground");
-mongoose.connect("mongodb+srv://ashish:vortex_8106@cluster0-11r60.mongodb.net/test?retryWrites=true&w=majority");
+//mongoose.connect("mongodb://localhost/campground", {useNewUrlParser: true, useUnifiedTopology: true});
+var uri = "mongodb://ashish:iamasimpleuser@test-shard-00-00-x7hao.gcp.mongodb.net:27017,test-shard-00-01-x7hao.gcp.mongodb.net:27017,test-shard-00-02-x7hao.gcp.mongodb.net:27017/test?ssl=true&replicaSet=test-shard-0&authSource=admin&retryWrites=true&w=majority"
+mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true}, function(){
+    console.log("connnected")
+});
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine","ejs");
